@@ -1,0 +1,51 @@
+How To Troubleshoot When your site is down on a Linux Server
+
+Step 1 : Check the server status
+check if I am able to access the server itself. 
+ with ping (ping your_server_ip}
+ssh command (ssh username@xx.xx.xx.xx) 
+or typing URL of that application
+
+Step 2 : Check the latest logs generated from the server
+The logs will be usually present at directory /var/log . 
+if Ubuntu server, check with tail -f  /var/log/apache2 
+If Centos server, check with tail -f  /var/log/httpd.log
+If Nginx server, check with tail -f  /var/log/nginx/access.log
+
+Step 3 : Make sure the daemon is up and running
+Use status command to check if the service is up or not.
+service apache2 status
+service httpd status
+service nginx status
+
+Step 4 : Verifying the Syntax of Web server
+Debian and Ubuntu distributions : /etc/apache2/
+Fedora, CentOS distributions : /etc/httpd/
+Configuration Directories for Nginx is: /etc/nginx/
+to check the configuration syntax of your files.: apache2ctl -t ; httpd -t ; nginx -t
+
+Step 5 : Is your Database back-end running Fine
+If you have configured your site to connect with database back-end like MySQL, PostreSQL, MongoDB, etc. 
+service mysql status
+service mysqld status
+service mongod status
+Alternately you can also verify with below netstat command
+netstat -ntlp | grep mysql
+
+Step 6 : Verify if your Web/App server is able to connect to Database backend
+The configuration file is located in wp-config.php file.
+Need to check that the DB_NAME, DB_USER, and DB_PASSWORD are correct 
+You can test whether the file has the correct information 
+by trying to connect to the database manually by changing appropriate Value in below command
+mysql -hDB_Host -uDB_USER -pDB_PASSWORD 
+
+Step 7 : Make sure the Ports are open
+telnet your_server_ip 80
+telnet your_server_ip 443
+You can also verify if your App/Web server is able to connect to your database port on back-end.
+telnet your_database_server_ip 3306
+May need to open up port 80,port 443 or Port 3306 
+
+Step 8 : Verifying the DNS Setting
+You also need to make sure that your domain is correctly pointed to Server IP.
+dig A example.com +short
