@@ -1,3 +1,13 @@
+# Wordpress_creation
+# What this script does:
+# 1- Updates the packages.
+# 2- Install Apache web server.
+# 3- Install PHP and requirements.
+# 4- Install MySQL.
+# 5- Install wordpress.
+
+
+
 #!/bin/bash
 # Description: Script to automate Wordpress's creation on centos 7
 # Author: Liliane Konissi
