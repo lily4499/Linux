@@ -1,7 +1,7 @@
 # Wordpress_creation
 What this script does:
-Updates the packages.
-Install Apache web server.
-Install MySQL.
-Install PHP and requirements.
-install wordpress.
+1- Updates the packages.
+2- Install Apache web server.
+3- Install PHP and requirements.
+4- Install MySQL.
+5- Install wordpress.
